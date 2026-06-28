@@ -6,7 +6,7 @@ import sys
 # Ensure app is in path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
-from app.models.claim import ClaimSubmission, ClaimDocument
+from app.models.claim import ClaimSubmission, ClaimDocument, ClaimHistoryEntry
 from app.models.enums import ClaimCategory, TraceStepStatus
 from app.orchestrator.pipeline import ClaimsPipeline
 from app.services.database import save_claim, save_decision
@@ -120,8 +120,15 @@ with st.form("submit_claim_form"):
         )
         
         # Simulation flags for developer testing
-        with st.expander("Developer Options"):
+        with st.expander("🛠️ Developer Options (Simulation)"):
             simulate_component_failure = st.checkbox("Simulate Component Failure (Fraud Detector exception)", value=False)
+            st.markdown("Use these fields to simulate historical claim context for testing limits and fraud signals:")
+            col_dev1, col_dev2 = st.columns(2)
+            with col_dev1:
+                sim_same_day_claims = st.number_input("Simulate Prior Claims Today", min_value=0, max_value=5, value=0)
+                sim_monthly_claims = st.number_input("Simulate Prior Claims This Month", min_value=0, max_value=20, value=0)
+            with col_dev2:
+                sim_ytd_amount = st.number_input("Simulate YTD Claims Amount (₹)", min_value=0.0, value=0.0, step=1000.0)
             
         submit_button = st.form_submit_button("Submit and Process Claim")
         
@@ -142,6 +149,27 @@ with st.form("submit_claim_form"):
                     content_type=uploaded_file.type
                 ))
                 
+            # Build claims history based on simulation inputs
+            claims_history = []
+            if sim_same_day_claims > 0:
+                for idx in range(sim_same_day_claims):
+                    claims_history.append(ClaimHistoryEntry(
+                        claim_id=f"CLM_SIM_DAY_{idx}",
+                        date=str(treatment_date),
+                        amount=2000.0,
+                        provider="Care Clinic"
+                    ))
+            if sim_monthly_claims > sim_same_day_claims:
+                for idx in range(sim_same_day_claims, sim_monthly_claims):
+                    day = max(1, 15 - idx)
+                    month_str = treatment_date.strftime("%Y-%m")
+                    claims_history.append(ClaimHistoryEntry(
+                        claim_id=f"CLM_SIM_MON_{idx}",
+                        date=f"{month_str}-{day:02d}",
+                        amount=1500.0,
+                        provider="City Hospital"
+                    ))
+
             # Construct submission
             claim = ClaimSubmission(
                 member_id=member_id,
@@ -152,7 +180,9 @@ with st.form("submit_claim_form"):
                 documents=documents,
                 pre_auth_approved=pre_auth_approved,
                 simulate_component_failure=simulate_component_failure,
-                submission_date=treatment_date
+                submission_date=treatment_date,
+                claims_history=claims_history if claims_history else None,
+                ytd_claims_amount=sim_ytd_amount if sim_ytd_amount > 0 else None
             )
             
             # Save claim to database
