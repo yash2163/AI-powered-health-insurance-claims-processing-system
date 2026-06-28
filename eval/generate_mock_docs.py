@@ -336,5 +336,5 @@ def generate_all_test_docs(test_cases_path: str, output_dir: str) -> None:
 
 if __name__ == "__main__":
     test_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../test_cases.json"))
-    out_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../data/mock_documents"))
+    out_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../data/test_suite"))
     generate_all_test_docs(test_path, out_path)

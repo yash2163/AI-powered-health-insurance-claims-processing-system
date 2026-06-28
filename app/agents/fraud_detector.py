@@ -69,10 +69,11 @@ class FraudDetector:
             status=TraceStepStatus.PASSED,
             duration_ms=duration,
             details=(
-                f"Same-day claims: {total_same_day}/{same_day_limit}. "
-                f"Monthly claims: {monthly_total}/{monthly_limit}. "
-                f"High-value: {'Yes' if claim.claimed_amount > high_value_threshold else 'No'}. "
-                + ("FLAGGED for manual review." if requires_review else "No flags raised.")
+                f"Fraud checks completed. "
+                f"Same-day claims count: {total_same_day} (limit: {same_day_limit}). "
+                f"Monthly claims count: {monthly_total} (limit: {monthly_limit}). "
+                f"High-value threshold check: ₹{claim.claimed_amount:,.2f} vs limit ₹{high_value_threshold:,.2f}. "
+                + (f"FLAGGED for manual review: {details}" if requires_review else "No flags raised. All frequency checks passed.")
             )
         )
 

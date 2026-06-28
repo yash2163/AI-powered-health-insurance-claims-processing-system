@@ -57,9 +57,12 @@ class InputValidator:
             status=TraceStepStatus.PASSED if passed else TraceStepStatus.FAILED,
             duration_ms=duration,
             details="; ".join(errors) if errors else (
-                f"Member {claim.member_id} valid. Policy active. "
-                f"Amount ₹{claim.claimed_amount:,.0f} within limits. "
-                f"Category {claim.claim_category.value} covered."
+                f"Successfully validated claim metadata. "
+                f"Member '{claim.member_id}' is active in the roster. "
+                f"Treatment date {claim.treatment_date} is within policy period ({policy.policy_start_date} to {policy.policy_end_date}). "
+                f"Claimed amount ₹{claim.claimed_amount:,.2f} is above minimum (₹{min_amount:,.2f}). "
+                f"Submission date {claim.submission_date} is within the {deadline_days}-day deadline. "
+                f"Category '{claim.claim_category.value}' is covered under the policy."
             )
         )
 

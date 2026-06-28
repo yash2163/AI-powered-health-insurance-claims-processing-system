@@ -60,6 +60,8 @@ class ClaimsPipeline:
                     "trace": [t.model_dump() for t in trace_steps]
                 }
         except Exception as e:
+            import traceback
+            traceback.print_exc()
             trace_steps.append(TraceStep(
                 step_name="document_verification",
                 status=TraceStepStatus.FAILED,
@@ -80,6 +82,8 @@ class ClaimsPipeline:
             extracted, trace = self.data_extractor.process(claim, doc_result.classifications)
             trace_steps.append(trace)
         except Exception as e:
+            import traceback
+            traceback.print_exc()
             trace_steps.append(TraceStep(
                 step_name="data_extraction",
                 status=TraceStepStatus.FAILED,
@@ -100,6 +104,8 @@ class ClaimsPipeline:
             policy_result, trace = self.policy_evaluator.process(claim, extracted, self.policy)
             trace_steps.append(trace)
         except Exception as e:
+            import traceback
+            traceback.print_exc()
             trace_steps.append(TraceStep(
                 step_name="policy_evaluation",
                 status=TraceStepStatus.FAILED,
@@ -120,6 +126,8 @@ class ClaimsPipeline:
             fraud_result, trace = self.fraud_detector.process(claim, self.policy)
             trace_steps.append(trace)
         except Exception as e:
+            import traceback
+            traceback.print_exc()
             trace_steps.append(TraceStep(
                 step_name="fraud_detection",
                 status=TraceStepStatus.FAILED,
@@ -141,9 +149,11 @@ class ClaimsPipeline:
             step_name="decision_aggregation",
             status=TraceStepStatus.PASSED,
             details=(
-                f"Decision: {decision.decision}. "
-                f"Approved: ₹{decision.approved_amount or 0:,.0f}. "
-                f"Confidence: {decision.confidence_score:.2f}."
+                f"Aggregated final claim decision. Verdict: {decision.decision}. "
+                f"Claimed amount: ₹{decision.claimed_amount:,.2f}. "
+                f"Approved amount: ₹{decision.approved_amount:,.2f}. "
+                f"Confidence score: {decision.confidence_score:.2f} (base: 0.95, component failures: {', '.join(component_failures) if component_failures else 'none'}). "
+                f"Final decision summary: {decision.message}"
             )
         ))
 

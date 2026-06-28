@@ -24,6 +24,9 @@ if "policy" not in st.session_state:
 
 policy = st.session_state.policy
 
+from app.utils.ui_components import render_gemini_config_sidebar
+render_gemini_config_sidebar()
+
 st.title("🧪 Evaluation Runner")
 st.write("Run predefined or custom evaluation scenarios through the claims engine pipeline.")
 
@@ -153,7 +156,8 @@ with tab1:
         
     if test_cases:
         if st.button("Run All 12 Predefined Test Cases", type="primary", key="run_predef"):
-            pipeline = ClaimsPipeline(policy)
+            from app.utils.ui_components import get_gemini_client
+            pipeline = ClaimsPipeline(policy, get_gemini_client())
             results = []
             passed_count = 0
             
@@ -312,7 +316,8 @@ with tab2:
                 # 3. Process claims if all cases are valid
                 if all_valid and validated_cases:
                     st.success("Schema validation passed! Executing custom claims...")
-                    pipeline = ClaimsPipeline(policy)
+                    from app.utils.ui_components import get_gemini_client
+                    pipeline = ClaimsPipeline(policy, get_gemini_client())
                     
                     for tc in validated_cases:
                         case_id = tc["case_id"]

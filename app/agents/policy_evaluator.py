@@ -587,15 +587,23 @@ class PolicyEvaluator:
     def _build_trace(self, result: PolicyEvaluationResult, duration_ms: int) -> TraceStep:
         """Build trace step summarizing all checks and calculations."""
         if result.all_checks_passed:
+            deduction_strings = []
+            for d in result.deductions:
+                deduction_strings.append(f"{d.description} (-₹{d.amount:,.2f})")
+            
             details = (
                 f"All policy checks passed. "
-                f"Pre-deduction: ₹{result.pre_deduction_amount:,.0f}. "
-                f"Deductions: {len(result.deductions)}. "
-                f"Final approved: ₹{result.final_approved_amount:,.0f}."
+                f"Pre-deduction amount: ₹{result.pre_deduction_amount:,.2f}. "
+                f"Deductions applied: {', '.join(deduction_strings) if deduction_strings else 'None'}. "
+                f"Final approved amount: ₹{result.final_approved_amount:,.2f}."
             )
             if result.is_partial:
+                excluded_strings = [
+                    f"'{item.get('description', 'Item')}' (₹{item.get('amount', 0.0):,.2f}) due to {item.get('reason', 'policy exclusion')}"
+                    for item in result.excluded_line_items
+                ]
                 details += (
-                    f" PARTIAL: {len(result.excluded_line_items)} items excluded."
+                    f" Partial exclusions: {', '.join(excluded_strings)}."
                 )
         else:
             details = (

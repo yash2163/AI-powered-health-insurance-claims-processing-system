@@ -74,6 +74,9 @@ if "policy" not in st.session_state:
 
 policy = st.session_state.policy
 
+from app.utils.ui_components import render_gemini_config_sidebar
+render_gemini_config_sidebar()
+
 # Interactive Member Search (outside the form so it is responsive)
 col_search, col_roster = st.columns([3, 2])
 with col_search:
@@ -149,7 +152,7 @@ with st.form("submit_claim_form"):
                 documents=documents,
                 pre_auth_approved=pre_auth_approved,
                 simulate_component_failure=simulate_component_failure,
-                submission_date=date.today()
+                submission_date=treatment_date
             )
             
             # Save claim to database
@@ -158,16 +161,9 @@ with st.form("submit_claim_form"):
             # Run multi-agent pipeline with progress spinner
             st.subheader("Claims Pipeline Execution")
             
-            # Initialize Pipeline Orchestrator
-            # If GeminiApiKey in env, initialize client, otherwise mock fallback is used in agents
-            gemini_client = None
-            from app.config import GEMINI_API_KEY
-            if GEMINI_API_KEY and GEMINI_API_KEY != "your_gemini_api_key_here":
-                try:
-                    from app.services.gemini_client import GeminiClient
-                    gemini_client = GeminiClient()
-                except Exception as e:
-                    st.warning(f"Failed to initialize Gemini Client: {e}. Falling back to deterministic rules.")
+            # Initialize Pipeline Orchestrator using user-configured client
+            from app.utils.ui_components import get_gemini_client
+            gemini_client = get_gemini_client()
             
             pipeline = ClaimsPipeline(policy, gemini_client)
             

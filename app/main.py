@@ -92,6 +92,9 @@ st.sidebar.markdown("<p style='color:#6C757D; font-size:0.85rem; margin-bottom:2
 
 st.sidebar.info("Use the sidebar pages to Submit Claims, Review Decisions, or Run the Evaluation Suite.")
 
+from app.utils.ui_components import render_gemini_config_sidebar
+render_gemini_config_sidebar()
+
 # Main Landing Page Content
 st.markdown("<h1 class='main-title'>Automated Health Insurance Claims Processing</h1>", unsafe_allow_html=True)
 st.markdown("<p class='subtitle'>Powered by Multi-Agent AI Pipelines & Deterministic Financial Engines</p>", unsafe_allow_html=True)

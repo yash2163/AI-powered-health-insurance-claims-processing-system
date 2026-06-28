@@ -174,12 +174,14 @@ IMPORTANT:
 - Be conservative: if unsure, set confidence lower and let the system handle it."""
 
 class GeminiClient:
-    def __init__(self):
-        if not GEMINI_API_KEY:
+    def __init__(self, api_key: str = None, model_name: str = None):
+        key = api_key or GEMINI_API_KEY
+        model = model_name or GEMINI_MODEL
+        if not key:
             raise ValueError("GEMINI_API_KEY is not configured in the environment.")
-        genai.configure(api_key=GEMINI_API_KEY)
+        genai.configure(api_key=key)
         self.model = genai.GenerativeModel(
-            model_name=GEMINI_MODEL,
+            model_name=model,
             generation_config=GenerationConfig(
                 temperature=GEMINI_TEMPERATURE,
                 response_mime_type="application/json"

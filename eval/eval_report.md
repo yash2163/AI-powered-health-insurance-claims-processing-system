@@ -1,6 +1,6 @@
 # Evaluation Report: Health Claims Processor
 
-Generated at: 2026-06-27 11:43:40
+Generated at: 2026-06-27 18:33:30
 
 ## Summary
 
@@ -48,7 +48,7 @@ Failed: **0**
   {
     "step_name": "input_validation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.178927",
+    "started_at": "2026-06-27 13:03:30.484584",
     "duration_ms": 0,
     "details": "Member EMP001 valid. Policy active. Amount \u20b91,500 within limits. Category CONSULTATION covered.",
     "input_summary": null,
@@ -57,7 +57,7 @@ Failed: **0**
   {
     "step_name": "document_verification",
     "status": "FAILED",
-    "started_at": "2026-06-27 06:13:40.178982",
+    "started_at": "2026-06-27 13:03:30.484633",
     "duration_ms": 0,
     "details": "Your consultation claim requires the following documents: HOSPITAL_BILL, PRESCRIPTION. We found: PRESCRIPTION. Missing: HOSPITAL_BILL. Please upload your hospital bill and resubmit.",
     "input_summary": null,
@@ -87,7 +87,7 @@ Failed: **0**
   {
     "step_name": "input_validation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.179283",
+    "started_at": "2026-06-27 13:03:30.485220",
     "duration_ms": 0,
     "details": "Member EMP004 valid. Policy active. Amount \u20b9800 within limits. Category PHARMACY covered.",
     "input_summary": null,
@@ -96,7 +96,7 @@ Failed: **0**
   {
     "step_name": "document_verification",
     "status": "FAILED",
-    "started_at": "2026-06-27 06:13:40.179311",
+    "started_at": "2026-06-27 13:03:30.485250",
     "duration_ms": 0,
     "details": "Your pharmacy bill (blurry_bill.jpg) is not readable. Please re-upload a clearer photo of your pharmacy bill.",
     "input_summary": null,
@@ -126,7 +126,7 @@ Failed: **0**
   {
     "step_name": "input_validation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.179347",
+    "started_at": "2026-06-27 13:03:30.485288",
     "duration_ms": 0,
     "details": "Member EMP001 valid. Policy active. Amount \u20b91,500 within limits. Category CONSULTATION covered.",
     "input_summary": null,
@@ -135,7 +135,7 @@ Failed: **0**
   {
     "step_name": "document_verification",
     "status": "FAILED",
-    "started_at": "2026-06-27 06:13:40.180248",
+    "started_at": "2026-06-27 13:03:30.485333",
     "duration_ms": 0,
     "details": "The documents appear to belong to different patients. The prescription is for 'Rajesh Kumar' but the hospital bill is for 'Arjun Mehta'. All documents must be for the same patient.",
     "input_summary": null,
@@ -165,7 +165,7 @@ Failed: **0**
   {
     "step_name": "input_validation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.180437",
+    "started_at": "2026-06-27 13:03:30.485539",
     "duration_ms": 0,
     "details": "Member EMP001 valid. Policy active. Amount \u20b91,500 within limits. Category CONSULTATION covered.",
     "input_summary": null,
@@ -174,7 +174,7 @@ Failed: **0**
   {
     "step_name": "document_verification",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.180459",
+    "started_at": "2026-06-27 13:03:30.485563",
     "duration_ms": 0,
     "details": "2 documents classified. All required documents present. Patient names consistent: 'Rajesh Kumar'.",
     "input_summary": null,
@@ -183,7 +183,7 @@ Failed: **0**
   {
     "step_name": "data_extraction",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.180561",
+    "started_at": "2026-06-27 13:03:30.485666",
     "duration_ms": 0,
     "details": "Extracted data from 2 documents. Diagnosis: Viral Fever. Treatment: N/A. Line items: 3. Total amount: \u20b91,500.",
     "input_summary": null,
@@ -192,16 +192,16 @@ Failed: **0**
   {
     "step_name": "policy_evaluation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.182208",
+    "started_at": "2026-06-27 13:03:30.487335",
     "duration_ms": 1,
-    "details": "All policy checks passed. Pre-deduction: \u20b91,500. Deductions: 1. Final approved: \u20b91,350.",
+    "details": "All policy checks passed. Pre-deduction amount: \u20b91,500.00. Deductions applied: Co-pay (10.0%) on \u20b91,500 = \u20b9150 deducted. After co-pay: \u20b91,350. (-\u20b9150.00). Final approved amount: \u20b91,350.00.",
     "input_summary": null,
     "output_summary": null
   },
   {
     "step_name": "fraud_detection",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.182236",
+    "started_at": "2026-06-27 13:03:30.487365",
     "duration_ms": 0,
     "details": "Same-day claims: 1/2. Monthly claims: 1/6. High-value: No. No flags raised.",
     "input_summary": null,
@@ -210,7 +210,7 @@ Failed: **0**
   {
     "step_name": "decision_aggregation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.182270",
+    "started_at": "2026-06-27 13:03:30.487398",
     "duration_ms": 0,
     "details": "Decision: APPROVED. Approved: \u20b91,350. Confidence: 0.95.",
     "input_summary": null,
@@ -240,7 +240,7 @@ Failed: **0**
   {
     "step_name": "input_validation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.182321",
+    "started_at": "2026-06-27 13:03:30.487450",
     "duration_ms": 0,
     "details": "Member EMP005 valid. Policy active. Amount \u20b93,000 within limits. Category CONSULTATION covered.",
     "input_summary": null,
@@ -249,7 +249,7 @@ Failed: **0**
   {
     "step_name": "document_verification",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.182347",
+    "started_at": "2026-06-27 13:03:30.487478",
     "duration_ms": 0,
     "details": "2 documents classified. All required documents present. Patient names consistent: 'Vikram Joshi'.",
     "input_summary": null,
@@ -258,7 +258,7 @@ Failed: **0**
   {
     "step_name": "data_extraction",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.182389",
+    "started_at": "2026-06-27 13:03:30.487520",
     "duration_ms": 0,
     "details": "Extracted data from 2 documents. Diagnosis: Type 2 Diabetes Mellitus. Treatment: N/A. Line items: 1. Total amount: \u20b93,000.",
     "input_summary": null,
@@ -267,7 +267,7 @@ Failed: **0**
   {
     "step_name": "policy_evaluation",
     "status": "FAILED",
-    "started_at": "2026-06-27 06:13:40.182510",
+    "started_at": "2026-06-27 13:03:30.487643",
     "duration_ms": 0,
     "details": "Policy check failed. Reasons: Diagnosis maps to 'diabetes' which has a 90-day waiting period. Member joined 2024-09-01. Treatment date 2024-10-15 is before eligibility date 2024-11-30. The member will be eligible for diabetes-related claims from 2024-11-30.",
     "input_summary": null,
@@ -276,7 +276,7 @@ Failed: **0**
   {
     "step_name": "fraud_detection",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.182523",
+    "started_at": "2026-06-27 13:03:30.487658",
     "duration_ms": 0,
     "details": "Same-day claims: 1/2. Monthly claims: 1/6. High-value: No. No flags raised.",
     "input_summary": null,
@@ -285,7 +285,7 @@ Failed: **0**
   {
     "step_name": "decision_aggregation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.182541",
+    "started_at": "2026-06-27 13:03:30.487676",
     "duration_ms": 0,
     "details": "Decision: REJECTED. Approved: \u20b90. Confidence: 0.95.",
     "input_summary": null,
@@ -315,7 +315,7 @@ Failed: **0**
   {
     "step_name": "input_validation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.182578",
+    "started_at": "2026-06-27 13:03:30.487711",
     "duration_ms": 0,
     "details": "Member EMP002 valid. Policy active. Amount \u20b912,000 within limits. Category DENTAL covered.",
     "input_summary": null,
@@ -324,7 +324,7 @@ Failed: **0**
   {
     "step_name": "document_verification",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.182592",
+    "started_at": "2026-06-27 13:03:30.487726",
     "duration_ms": 0,
     "details": "1 documents classified. All required documents present. Patient names consistent: 'Priya Singh'.",
     "input_summary": null,
@@ -333,7 +333,7 @@ Failed: **0**
   {
     "step_name": "data_extraction",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.182621",
+    "started_at": "2026-06-27 13:03:30.487755",
     "duration_ms": 0,
     "details": "Extracted data from 1 documents. Diagnosis: N/A. Treatment: N/A. Line items: 2. Total amount: \u20b912,000.",
     "input_summary": null,
@@ -342,16 +342,16 @@ Failed: **0**
   {
     "step_name": "policy_evaluation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.182989",
+    "started_at": "2026-06-27 13:03:30.488125",
     "duration_ms": 0,
-    "details": "All policy checks passed. Pre-deduction: \u20b98,000. Deductions: 0. Final approved: \u20b98,000. PARTIAL: 1 items excluded.",
+    "details": "All policy checks passed. Pre-deduction amount: \u20b98,000.00. Deductions applied: None. Final approved amount: \u20b98,000.00. Partial exclusions: 'Teeth Whitening' (\u20b94,000.00) due to Excluded procedure: Teeth Whitening.",
     "input_summary": null,
     "output_summary": null
   },
   {
     "step_name": "fraud_detection",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.183002",
+    "started_at": "2026-06-27 13:03:30.488140",
     "duration_ms": 0,
     "details": "Same-day claims: 1/2. Monthly claims: 1/6. High-value: No. No flags raised.",
     "input_summary": null,
@@ -360,7 +360,7 @@ Failed: **0**
   {
     "step_name": "decision_aggregation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.183019",
+    "started_at": "2026-06-27 13:03:30.488157",
     "duration_ms": 0,
     "details": "Decision: PARTIAL. Approved: \u20b98,000. Confidence: 0.95.",
     "input_summary": null,
@@ -390,7 +390,7 @@ Failed: **0**
   {
     "step_name": "input_validation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.183059",
+    "started_at": "2026-06-27 13:03:30.488196",
     "duration_ms": 0,
     "details": "Member EMP007 valid. Policy active. Amount \u20b915,000 within limits. Category DIAGNOSTIC covered.",
     "input_summary": null,
@@ -399,7 +399,7 @@ Failed: **0**
   {
     "step_name": "document_verification",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.183080",
+    "started_at": "2026-06-27 13:03:30.488218",
     "duration_ms": 0,
     "details": "3 documents classified. All required documents present. Patient names consistent: 'N/A'.",
     "input_summary": null,
@@ -408,7 +408,7 @@ Failed: **0**
   {
     "step_name": "data_extraction",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.183113",
+    "started_at": "2026-06-27 13:03:30.488252",
     "duration_ms": 0,
     "details": "Extracted data from 3 documents. Diagnosis: Suspected Lumbar Disc Herniation. Treatment: N/A. Line items: 1. Total amount: \u20b915,000.",
     "input_summary": null,
@@ -417,7 +417,7 @@ Failed: **0**
   {
     "step_name": "policy_evaluation",
     "status": "FAILED",
-    "started_at": "2026-06-27 06:13:40.183264",
+    "started_at": "2026-06-27 13:03:30.488404",
     "duration_ms": 0,
     "details": "Policy check failed. Reasons: Pre-authorization is required for this treatment (amount \u20b915,000 exceeds threshold). No pre-authorization was obtained. Please obtain pre-authorization from your insurer before undergoing the treatment and resubmit the claim.",
     "input_summary": null,
@@ -426,7 +426,7 @@ Failed: **0**
   {
     "step_name": "fraud_detection",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.183276",
+    "started_at": "2026-06-27 13:03:30.488417",
     "duration_ms": 0,
     "details": "Same-day claims: 1/2. Monthly claims: 1/6. High-value: No. No flags raised.",
     "input_summary": null,
@@ -435,7 +435,7 @@ Failed: **0**
   {
     "step_name": "decision_aggregation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.183290",
+    "started_at": "2026-06-27 13:03:30.488436",
     "duration_ms": 0,
     "details": "Decision: REJECTED. Approved: \u20b90. Confidence: 0.95.",
     "input_summary": null,
@@ -465,7 +465,7 @@ Failed: **0**
   {
     "step_name": "input_validation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.183322",
+    "started_at": "2026-06-27 13:03:30.488471",
     "duration_ms": 0,
     "details": "Member EMP003 valid. Policy active. Amount \u20b97,500 within limits. Category CONSULTATION covered.",
     "input_summary": null,
@@ -474,7 +474,7 @@ Failed: **0**
   {
     "step_name": "document_verification",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.183338",
+    "started_at": "2026-06-27 13:03:30.488487",
     "duration_ms": 0,
     "details": "2 documents classified. All required documents present. Patient names consistent: 'N/A'.",
     "input_summary": null,
@@ -483,7 +483,7 @@ Failed: **0**
   {
     "step_name": "data_extraction",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.183364",
+    "started_at": "2026-06-27 13:03:30.488514",
     "duration_ms": 0,
     "details": "Extracted data from 2 documents. Diagnosis: Gastroenteritis. Treatment: N/A. Line items: 2. Total amount: \u20b97,500.",
     "input_summary": null,
@@ -492,7 +492,7 @@ Failed: **0**
   {
     "step_name": "policy_evaluation",
     "status": "FAILED",
-    "started_at": "2026-06-27 06:13:40.183554",
+    "started_at": "2026-06-27 13:03:30.488706",
     "duration_ms": 0,
     "details": "Policy check failed. Reasons: Claimed amount \u20b97,500 exceeds the per-claim limit of \u20b95,000. The maximum allowed per claim for consultation is \u20b95,000.",
     "input_summary": null,
@@ -501,7 +501,7 @@ Failed: **0**
   {
     "step_name": "fraud_detection",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.183568",
+    "started_at": "2026-06-27 13:03:30.488721",
     "duration_ms": 0,
     "details": "Same-day claims: 1/2. Monthly claims: 1/6. High-value: No. No flags raised.",
     "input_summary": null,
@@ -510,7 +510,7 @@ Failed: **0**
   {
     "step_name": "decision_aggregation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.183582",
+    "started_at": "2026-06-27 13:03:30.488736",
     "duration_ms": 0,
     "details": "Decision: REJECTED. Approved: \u20b90. Confidence: 0.95.",
     "input_summary": null,
@@ -540,7 +540,7 @@ Failed: **0**
   {
     "step_name": "input_validation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.183620",
+    "started_at": "2026-06-27 13:03:30.488777",
     "duration_ms": 0,
     "details": "Member EMP008 valid. Policy active. Amount \u20b94,800 within limits. Category CONSULTATION covered.",
     "input_summary": null,
@@ -549,7 +549,7 @@ Failed: **0**
   {
     "step_name": "document_verification",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.183635",
+    "started_at": "2026-06-27 13:03:30.488794",
     "duration_ms": 0,
     "details": "2 documents classified. All required documents present. Patient names consistent: 'N/A'.",
     "input_summary": null,
@@ -558,7 +558,7 @@ Failed: **0**
   {
     "step_name": "data_extraction",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.183662",
+    "started_at": "2026-06-27 13:03:30.488818",
     "duration_ms": 0,
     "details": "Extracted data from 2 documents. Diagnosis: Migraine. Treatment: N/A. Line items: 1. Total amount: \u20b94,800.",
     "input_summary": null,
@@ -567,16 +567,16 @@ Failed: **0**
   {
     "step_name": "policy_evaluation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.183817",
+    "started_at": "2026-06-27 13:03:30.488980",
     "duration_ms": 0,
-    "details": "All policy checks passed. Pre-deduction: \u20b94,800. Deductions: 1. Final approved: \u20b94,320.",
+    "details": "All policy checks passed. Pre-deduction amount: \u20b94,800.00. Deductions applied: Co-pay (10.0%) on \u20b94,800 = \u20b9480 deducted. After co-pay: \u20b94,320. (-\u20b9480.00). Final approved amount: \u20b94,320.00.",
     "input_summary": null,
     "output_summary": null
   },
   {
     "step_name": "fraud_detection",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.183836",
+    "started_at": "2026-06-27 13:03:30.488999",
     "duration_ms": 0,
     "details": "Same-day claims: 4/2. Monthly claims: 4/6. High-value: No. FLAGGED for manual review.",
     "input_summary": null,
@@ -585,7 +585,7 @@ Failed: **0**
   {
     "step_name": "decision_aggregation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.183850",
+    "started_at": "2026-06-27 13:03:30.489013",
     "duration_ms": 0,
     "details": "Decision: MANUAL_REVIEW. Approved: \u20b90. Confidence: 0.95.",
     "input_summary": null,
@@ -615,7 +615,7 @@ Failed: **0**
   {
     "step_name": "input_validation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.183884",
+    "started_at": "2026-06-27 13:03:30.489043",
     "duration_ms": 0,
     "details": "Member EMP010 valid. Policy active. Amount \u20b94,500 within limits. Category CONSULTATION covered.",
     "input_summary": null,
@@ -624,7 +624,7 @@ Failed: **0**
   {
     "step_name": "document_verification",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.183907",
+    "started_at": "2026-06-27 13:03:30.489068",
     "duration_ms": 0,
     "details": "2 documents classified. All required documents present. Patient names consistent: 'Deepak Shah'.",
     "input_summary": null,
@@ -633,7 +633,7 @@ Failed: **0**
   {
     "step_name": "data_extraction",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.183943",
+    "started_at": "2026-06-27 13:03:30.489106",
     "duration_ms": 0,
     "details": "Extracted data from 2 documents. Diagnosis: Acute Bronchitis. Treatment: N/A. Line items: 2. Total amount: \u20b94,500.",
     "input_summary": null,
@@ -642,16 +642,16 @@ Failed: **0**
   {
     "step_name": "policy_evaluation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.184146",
+    "started_at": "2026-06-27 13:03:30.489316",
     "duration_ms": 0,
-    "details": "All policy checks passed. Pre-deduction: \u20b94,500. Deductions: 2. Final approved: \u20b93,240.",
+    "details": "All policy checks passed. Pre-deduction amount: \u20b94,500.00. Deductions applied: Network hospital discount (20.0%) on \u20b94,500 = \u20b9900 deducted. After discount: \u20b93,600. (-\u20b9900.00), Co-pay (10.0%) on \u20b93,600 = \u20b9360 deducted. After co-pay: \u20b93,240. (-\u20b9360.00). Final approved amount: \u20b93,240.00.",
     "input_summary": null,
     "output_summary": null
   },
   {
     "step_name": "fraud_detection",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.184158",
+    "started_at": "2026-06-27 13:03:30.489329",
     "duration_ms": 0,
     "details": "Same-day claims: 1/2. Monthly claims: 1/6. High-value: No. No flags raised.",
     "input_summary": null,
@@ -660,7 +660,7 @@ Failed: **0**
   {
     "step_name": "decision_aggregation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.184177",
+    "started_at": "2026-06-27 13:03:30.489344",
     "duration_ms": 0,
     "details": "Decision: APPROVED. Approved: \u20b93,240. Confidence: 0.95.",
     "input_summary": null,
@@ -690,7 +690,7 @@ Failed: **0**
   {
     "step_name": "input_validation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.184209",
+    "started_at": "2026-06-27 13:03:30.489379",
     "duration_ms": 0,
     "details": "Member EMP006 valid. Policy active. Amount \u20b94,000 within limits. Category ALTERNATIVE_MEDICINE covered.",
     "input_summary": null,
@@ -699,7 +699,7 @@ Failed: **0**
   {
     "step_name": "document_verification",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.184225",
+    "started_at": "2026-06-27 13:03:30.489396",
     "duration_ms": 0,
     "details": "2 documents classified. All required documents present. Patient names consistent: 'N/A'.",
     "input_summary": null,
@@ -708,7 +708,7 @@ Failed: **0**
   {
     "step_name": "data_extraction",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.184252",
+    "started_at": "2026-06-27 13:03:30.489424",
     "duration_ms": 0,
     "details": "Extracted data from 2 documents. Diagnosis: Chronic Joint Pain. Treatment: Panchakarma Therapy. Line items: 2. Total amount: \u20b94,000.",
     "input_summary": null,
@@ -717,16 +717,16 @@ Failed: **0**
   {
     "step_name": "policy_evaluation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.184460",
+    "started_at": "2026-06-27 13:03:30.489632",
     "duration_ms": 0,
-    "details": "All policy checks passed. Pre-deduction: \u20b94,000. Deductions: 0. Final approved: \u20b94,000.",
+    "details": "All policy checks passed. Pre-deduction amount: \u20b94,000.00. Deductions applied: None. Final approved amount: \u20b94,000.00.",
     "input_summary": null,
     "output_summary": null
   },
   {
     "step_name": "fraud_detection",
     "status": "FAILED",
-    "started_at": "2026-06-27 06:13:40.184464",
+    "started_at": "2026-06-27 13:03:30.490031",
     "duration_ms": 0,
     "details": "Fraud detection failed: Simulated component failure: Fraud detection service unavailable. Skipped \u2014 manual review recommended.",
     "input_summary": null,
@@ -735,7 +735,7 @@ Failed: **0**
   {
     "step_name": "decision_aggregation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.184478",
+    "started_at": "2026-06-27 13:03:30.490057",
     "duration_ms": 0,
     "details": "Decision: APPROVED. Approved: \u20b94,000. Confidence: 0.65.",
     "input_summary": null,
@@ -765,7 +765,7 @@ Failed: **0**
   {
     "step_name": "input_validation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.184510",
+    "started_at": "2026-06-27 13:03:30.490102",
     "duration_ms": 0,
     "details": "Member EMP009 valid. Policy active. Amount \u20b98,000 within limits. Category CONSULTATION covered.",
     "input_summary": null,
@@ -774,7 +774,7 @@ Failed: **0**
   {
     "step_name": "document_verification",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.184526",
+    "started_at": "2026-06-27 13:03:30.490125",
     "duration_ms": 0,
     "details": "2 documents classified. All required documents present. Patient names consistent: 'N/A'.",
     "input_summary": null,
@@ -783,7 +783,7 @@ Failed: **0**
   {
     "step_name": "data_extraction",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.184553",
+    "started_at": "2026-06-27 13:03:30.490163",
     "duration_ms": 0,
     "details": "Extracted data from 2 documents. Diagnosis: Morbid Obesity \u2014 BMI 37. Treatment: Bariatric Consultation and Customised Diet Plan. Line items: 2. Total amount: \u20b98,000.",
     "input_summary": null,
@@ -792,7 +792,7 @@ Failed: **0**
   {
     "step_name": "policy_evaluation",
     "status": "FAILED",
-    "started_at": "2026-06-27 06:13:40.184973",
+    "started_at": "2026-06-27 13:03:30.490333",
     "duration_ms": 0,
     "details": "Policy check failed. Reasons: Diagnosis maps to 'obesity_treatment' which has a 365-day waiting period. Member joined 2024-04-01. Treatment date 2024-10-18 is before eligibility date 2025-04-01. The member will be eligible for obesity_treatment-related claims from 2025-04-01.; Treatment is excluded under policy. Matched exclusions: Obesity and weight loss programs, Bariatric surgery. Diagnosis 'Morbid Obesity \u2014 BMI 37' and all billed items fall under excluded conditions.",
     "input_summary": null,
@@ -801,7 +801,7 @@ Failed: **0**
   {
     "step_name": "fraud_detection",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.184985",
+    "started_at": "2026-06-27 13:03:30.490352",
     "duration_ms": 0,
     "details": "Same-day claims: 1/2. Monthly claims: 1/6. High-value: No. No flags raised.",
     "input_summary": null,
@@ -810,7 +810,7 @@ Failed: **0**
   {
     "step_name": "decision_aggregation",
     "status": "PASSED",
-    "started_at": "2026-06-27 06:13:40.185000",
+    "started_at": "2026-06-27 13:03:30.490371",
     "duration_ms": 0,
     "details": "Decision: REJECTED. Approved: \u20b90. Confidence: 0.95.",
     "input_summary": null,

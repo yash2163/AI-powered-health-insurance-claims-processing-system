@@ -146,5 +146,6 @@ Thumbs.db
 *.db
 *.sqlite
 *.sqlite3
-data/mock_documents/
+data/test_suite/*.pdf
+data/playwright_failure.png
 .streamlit/

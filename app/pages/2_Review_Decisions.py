@@ -17,7 +17,8 @@ if "policy" not in st.session_state:
         st.session_state.policy = load_policy(POLICY_FILE_PATH)
     except Exception:
         pass
-
+from app.utils.ui_components import render_gemini_config_sidebar
+render_gemini_config_sidebar()
 st.title("📋 Review Decisions")
 st.write("Browse, filter, and drill down into the explainable audit traces for all processed claims.")
 

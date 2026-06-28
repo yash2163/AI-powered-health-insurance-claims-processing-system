@@ -38,7 +38,7 @@ Generate mock PDF prescriptions, bills, and lab reports matching the 12 evaluati
 ```bash
 python3 eval/generate_mock_docs.py
 ```
-This generates mock PDF files under `data/mock_documents/` which can be uploaded in the UI.
+This generates mock PDF files under `data/test_suite/` which can be uploaded in the UI.
 
 ### 4. Run Unit Tests
 Run the project's 26 unit tests covering all components and integration flows:

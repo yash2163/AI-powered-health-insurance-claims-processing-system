@@ -36,6 +36,10 @@ class DataExtractor:
         aggregated = self._aggregate(extraction_results, claim)
 
         duration = int((datetime.utcnow() - start_time).total_seconds() * 1000)
+        line_item_details = []
+        for item in aggregated.line_items:
+            line_item_details.append(f"'{item.description}' (₹{item.amount:,.2f})")
+
         trace = TraceStep(
             step_name="data_extraction",
             status=TraceStepStatus.PASSED,
@@ -44,8 +48,8 @@ class DataExtractor:
                 f"Extracted data from {len(extraction_results)} documents. "
                 f"Diagnosis: {aggregated.primary_diagnosis or 'N/A'}. "
                 f"Treatment: {aggregated.primary_treatment or 'N/A'}. "
-                f"Line items: {len(aggregated.line_items)}. "
-                f"Total amount: ₹{aggregated.total_extracted_amount or 0:,.0f}."
+                f"Line items extracted: {', '.join(line_item_details) if line_item_details else 'None'}. "
+                f"Total aggregated extracted amount: ₹{aggregated.total_extracted_amount or 0.0:,.2f}."
             )
         )
 
