@@ -2,6 +2,11 @@
 
 An automated Health Insurance Claims Processing System powered by a Multi-Agent AI Pipeline and deterministic financial engines.
 
+## 📖 Design Documentation
+Detailed architectural and system specifications can be found under the [docs/](file:///Users/yashrajput/Desktop/PlumAssignment/docs) directory:
+* **[High Level Design (HLD)](file:///Users/yashrajput/Desktop/PlumAssignment/docs/HLD.md)** - Details architectural blueprints, agent orchestration workflows, and data pipelines.
+* **[Low Level Design (LLD)](file:///Users/yashrajput/Desktop/PlumAssignment/docs/LLD.md)** - Details database schemas, agent API prompt specs, and class designs.
+
 ---
 
 ## 🚀 Features
