@@ -137,11 +137,28 @@ def validate_custom_test_case(tc: dict) -> list:
 tab1, tab2 = st.tabs(["Predefined Test Cases", "Add Custom Test Case"])
 
 with tab1:
-    try:
-        test_cases = load_test_cases(TEST_CASES_PATH)
-        st.write(f"Found **{len(test_cases)}** predefined test cases:")
-        
-        # Display summary table of predefined test cases
+    test_cases = []
+    # Try to load from local file first
+    if os.path.exists(TEST_CASES_PATH):
+        try:
+            test_cases = load_test_cases(TEST_CASES_PATH)
+        except Exception as e:
+            st.error(f"Error loading local test cases: {e}")
+            
+    # If not found or empty, show file uploader
+    if not test_cases:
+        st.info("ℹ️ **Predefined `test_cases.json` not found in root directory.** To run the predefined evaluations, please upload the test cases file:")
+        uploaded_test_file = st.file_uploader("Upload `test_cases.json`", type=["json"])
+        if uploaded_test_file:
+            try:
+                test_cases_data = json.load(uploaded_test_file)
+                test_cases = test_cases_data.get("test_cases", [])
+                st.success(f"Successfully loaded **{len(test_cases)}** test cases from uploaded file!")
+            except Exception as e:
+                st.error(f"Error parsing uploaded JSON: {e}")
+                
+    if test_cases:
+        st.write(f"Found **{len(test_cases)}** test cases:")
         st.table([
             {
                 "Case ID": tc["case_id"], 
@@ -150,12 +167,8 @@ with tab1:
                 "Expected": tc.get("expected", {}).get("decision") or "Early Rejection"
             } for tc in test_cases
         ])
-    except Exception as e:
-        st.error(f"Error loading test cases: {e}")
-        test_cases = []
         
-    if test_cases:
-        if st.button("Run All 12 Predefined Test Cases", type="primary", key="run_predef"):
+        if st.button("Run All Predefined Test Cases", type="primary", key="run_predef"):
             from app.utils.ui_components import get_gemini_client
             pipeline = ClaimsPipeline(policy, get_gemini_client())
             results = []
