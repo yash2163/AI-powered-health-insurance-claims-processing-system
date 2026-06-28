@@ -64,3 +64,30 @@ Launch the interactive dashboard to submit claims and explore audit logs:
 streamlit run app/main.py
 ```
 Open [http://localhost:8501](http://localhost:8501) in your browser.
+
+---
+
+## 🔮 Future Scope: Scalability, Reliability & Cost Optimization
+
+To prepare this system for production scaling (handling 100k+ claims/day), the following architectural enhancements are proposed:
+
+### 1. Production Deployment & High Scalability
+* **Asynchronous Queue-Based Processing:** Instead of synchronous HTTP processing in the Streamlit UI, claims will be placed into a message broker like **RabbitMQ** or **AWS SQS**. Worker nodes running the pipeline will consume claims off the queue, preventing thread starvation and allowing the system to handle huge peaks of claim arrivals.
+* **Database Scaling:** Migrate from local SQLite to **PostgreSQL on Amazon RDS** with read-replicas. Claims history lookups and fraud checks will query read-replicas, while write operations write to the primary DB.
+* **Microservices Orchestration:** Split each agent (Gatekeeper, Data Extractor, Policy Evaluator) into separate stateless microservices packaged in **Docker containers** and deployed on **Kubernetes (EKS/GKE)**. Each microservice can scale independently using Horizontal Pod Autoscalers (HPA) based on queue lengths.
+
+### 2. High Reliability & Fault Tolerance
+* **Multi-LLM Redundancy:** Avoid vendor lock-in and single-point-of-failure issues. If the primary Gemini model encounters 429 rate limits or outages, the orchestrator will instantly fall back to secondary models (like Anthropic Claude or OpenAI GPT-4o-mini) to maintain high availability.
+* **OpenTelemetry Logging & Observability:** Implement tracing spans for all agents and log data to APM tools like **Datadog** or **Prometheus/Grafana**. This allows tracking:
+  * **P99 Latency** per pipeline step.
+  * **Token consumption rates** and error traces.
+  * **Accuracy drift** of the OCR models over time.
+
+### 3. Reducing Cost Per Claim (Token Optimization)
+* **Local Pre-Filters:** Maintain the deterministic **Input Validator** as the entry gate. Invalid claims (e.g. past deadline or not on the roster) are terminated at zero token cost before invoking LLMs.
+* **LLM Input Caching & Document Hashing:** Calculate MD5 hashes of uploaded documents. If the same document is uploaded again, fetch OCR and classification results from an **Elasticache (Redis)** cache instead of calling the Gemini Vision API again.
+* **Hierarchical Model Routing:**
+  * Use cheaper, lightweight models (like Llama-3-8B or Mistral-7B hosted locally on vLLM, costing ~10x less) for simple tasks like Document Classification (Gatekeeper) and plain text extraction.
+  * Use advanced models (like Gemini 1.5 Pro) only when the Policy Evaluator encounters complex, multi-page, or highly ambiguous clinical summaries.
+* **Prompt Engineering Optimization:** Trim system prompts to use minimalist JSON output schemas and compress context formatting to minimize input token size.
+
