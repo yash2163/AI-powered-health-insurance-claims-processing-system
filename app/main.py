@@ -79,6 +79,16 @@ def get_cached_policy():
 # Initialize Database
 init_db()
 
+# Auto-generate mock documents if they are missing (crucial for cloud deployments where PDFs are gitignored)
+test_docs_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../data/test_suite"))
+if not os.path.exists(test_docs_dir) or not any(f.endswith(".pdf") for f in os.listdir(test_docs_dir) if os.path.isfile(os.path.join(test_docs_dir, f))):
+    try:
+        from eval.generate_mock_docs import generate_all_test_docs
+        test_cases_json_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../test_cases.json"))
+        generate_all_test_docs(test_cases_json_path, test_docs_dir)
+    except Exception as e:
+        st.warning(f"Could not auto-generate mock documents: {e}")
+
 # Load policy config into session state
 if "policy" not in st.session_state:
     try:
@@ -231,6 +241,49 @@ if "policy" in st.session_state:
         """)
         
         st.info("💡 Tip: Use the dynamic 'Developer Options (Simulation)' settings at the bottom of the Submit Claim form to configure historical context for TC008, TC009, and TC011.")
+        
+        st.markdown("### 📥 Download Mock Medical Documents")
+        st.write("To test the claims above manually, you can download all the generated mock PDFs (prescriptions, hospital bills) in a single ZIP file, or select individual files below:")
+        
+        import zipfile
+        import io
+        import glob
+        
+        pdf_files = glob.glob(os.path.join(test_docs_dir, "*.pdf"))
+        
+        if pdf_files:
+            # ZIP in memory
+            zip_buffer = io.BytesIO()
+            with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zip_file:
+                for fpath in pdf_files:
+                    fname = os.path.basename(fpath)
+                    zip_file.write(fpath, fname)
+            
+            st.download_button(
+                label="📥 Download All Mock Documents (ZIP)",
+                data=zip_buffer.getvalue(),
+                file_name="plum_test_documents.zip",
+                mime="application/zip",
+                type="primary"
+            )
+            
+            st.write("")
+            st.markdown("**Download Individual Files:**")
+            pdf_files_sorted = sorted(pdf_files, key=lambda x: os.path.basename(x))
+            filenames = [os.path.basename(f) for f in pdf_files_sorted]
+            
+            selected_file = st.selectbox("Select document to download:", options=filenames, key="select_doc_dl")
+            if selected_file:
+                selected_path = os.path.join(test_docs_dir, selected_file)
+                with open(selected_path, "rb") as f:
+                    file_bytes = f.read()
+                st.download_button(
+                    label=f"💾 Download {selected_file}",
+                    data=file_bytes,
+                    file_name=selected_file,
+                    mime="application/pdf",
+                    key="dl_single_doc_btn"
+                )
 
 else:
     st.warning("Please verify your policy configuration file path.")
