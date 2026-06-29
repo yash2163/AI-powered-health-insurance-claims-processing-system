@@ -194,9 +194,12 @@ if run_custom:
         st.warning("Please upload a file or paste a JSON object first.")
         
     if custom_data:
-        # Detect list or single dict
+        # Detect list, single dict, or dict containing a 'test_cases' list (like test_cases.json)
         if isinstance(custom_data, dict):
-            test_cases_to_run = [custom_data]
+            if "test_cases" in custom_data and isinstance(custom_data["test_cases"], list):
+                test_cases_to_run = custom_data["test_cases"]
+            else:
+                test_cases_to_run = [custom_data]
         elif isinstance(custom_data, list):
             test_cases_to_run = custom_data
         else:
