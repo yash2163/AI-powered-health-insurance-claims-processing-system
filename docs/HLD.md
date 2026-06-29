@@ -773,30 +773,16 @@ health-claims-processor/
 │       ├── date_utils.py              # Date arithmetic helpers
 │       └── text_matching.py           # Fuzzy name matching (Levenshtein)
 │
-├── tests/
-│   ├── conftest.py                    # Shared fixtures
-│   ├── test_input_validator.py
-│   ├── test_document_gatekeeper.py
-│   ├── test_data_extractor.py
-│   ├── test_policy_evaluator.py
-│   ├── test_fraud_detector.py
-│   ├── test_decision_aggregator.py
-│   ├── test_rules/
-│   │   ├── test_waiting_period.py
-│   │   ├── test_limits.py
-│   │   ├── test_copay.py
-│   │   └── test_preauth.py
-│   └── test_pipeline_integration.py   # End-to-end pipeline tests
-│
 ├── eval/
 │   ├── run_eval.py                    # Execute all 12 test cases
 │   ├── generate_mock_docs.py          # Generate mock medical documents for testing
 │   └── eval_report.md                 # Generated evaluation report
 │
 └── docs/
-    ├── architecture.md                # Architecture document (Plum deliverable)
-    ├── component_contracts.md         # Component interface contracts (Plum deliverable)
-    └── trade_offs.md                  # Trade-off documentation (Plum deliverable)
+    ├── HLD.md                         # High-Level Design & Architecture Document
+    ├── LLD.md                         # Low-Level Design & Component Contracts
+    ├── assignment.md                  # Original assignment specification sheet
+    └── sample_documents_guide.md      # Original mock document specification sheet
 ```
 
 ---
